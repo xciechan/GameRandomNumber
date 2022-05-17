@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int rangeNumbers = 100;
-        System.out.println(processOfGuessingTheNumber(getRandomNumber(rangeNumbers)));
+        processOfGuessingTheNumber(getRandomNumber(rangeNumbers));
 
     }
 
@@ -23,19 +23,30 @@ public class Main {
         return random.nextInt(100) + 1;
     }
 
-    static String processOfGuessingTheNumber(int randomNumber){
+    static void processOfGuessingTheNumber(int randomNumber){
         Scanner scanner = new Scanner(System.in);
         int numberEnter = 0;
         int numberOfTries = 0;
+
+        System.out.println("Guess the number drawn by the computer");
 
         do {
             numberEnter = scanner.nextInt();
             numberOfTries += 1;
 
+            if (numberEnter > randomNumber){
+                System.out.println("The number entered is too big");
+            } else if (numberEnter < randomNumber){
+                System.out.println("The number entered is too small");
+            } else {
+                System.out.println();
+                System.out.println("Congratulations - you guess!");
+                System.out.println("The random number is: " + randomNumber + ", Number of Tries: " + numberOfTries);
+            }
+
         }
         while (numberEnter != randomNumber);
 
-        return "You guess";
     }
 
 }
